@@ -134,7 +134,7 @@ public class JobSearchSearviceImpl implements IJobSearchService {
 	public List<JobESModel> jobESModels(String searchKey) {
 		BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
 		if (Strings.isNotEmpty(searchKey)) {
-			MultiMatchQueryBuilder multiMatchQueryBuilder = QueryBuilders.multiMatchQuery(searchKey, "jobName", "company");
+			MultiMatchQueryBuilder multiMatchQueryBuilder = QueryBuilders.multiMatchQuery(searchKey, "jobName", "jobContent", "company");
 			BoolQueryBuilder keyQueryBuilder = QueryBuilders.boolQuery();
 			keyQueryBuilder.should(multiMatchQueryBuilder);
 			boolQueryBuilder.must(keyQueryBuilder);

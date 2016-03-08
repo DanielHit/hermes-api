@@ -1,5 +1,6 @@
 package com.qiezi.hermes.api.service.Impl;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.qiezi.hermes.api.dao.IJobDescDAO;
 import com.qiezi.hermes.api.domain.JobDescDO;
@@ -9,7 +10,6 @@ import com.qiezi.hermes.api.result.JobSearchResult;
 import com.qiezi.hermes.api.service.IJobESRepository;
 import com.qiezi.hermes.api.service.IJobSearchService;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.logging.log4j.util.Strings;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.MultiMatchQueryBuilder;
@@ -133,7 +133,7 @@ public class JobSearchSearviceImpl implements IJobSearchService {
 	@Override
 	public List<JobESModel> jobESModels(String searchKey) {
 		BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
-		if (Strings.isNotEmpty(searchKey)) {
+		if (!Strings.isNullOrEmpty(searchKey)) {
 			MultiMatchQueryBuilder multiMatchQueryBuilder = QueryBuilders.multiMatchQuery(searchKey, "jobName", "jobContent", "company");
 			BoolQueryBuilder keyQueryBuilder = QueryBuilders.boolQuery();
 			keyQueryBuilder.should(multiMatchQueryBuilder);
@@ -196,7 +196,7 @@ public class JobSearchSearviceImpl implements IJobSearchService {
 		}
 		// 关键词搜索
 		String searchKey = selectRequestParam.getKeyWord();
-		if (Strings.isNotEmpty(searchKey)) {
+		if (!Strings.isNullOrEmpty(searchKey)) {
 			MultiMatchQueryBuilder multiMatchQueryBuilder = QueryBuilders.multiMatchQuery(searchKey, "jobName", "company");
 			BoolQueryBuilder keyQueryBuilder = QueryBuilders.boolQuery();
 			keyQueryBuilder.should(multiMatchQueryBuilder);

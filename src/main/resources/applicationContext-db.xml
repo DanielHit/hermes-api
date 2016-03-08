@@ -27,52 +27,52 @@
         <!-- 基本属性 url、user、password -->
         <property
                 name="url"
-                value="${jdbc_url}"/>
+                value="jdbc:mysql://10.4.242.114:5001/hermes_item?useUnicode=true&amp;connectTimeout=1000&amp;socketTimeout=3000&amp;characterEncoding=UTF-8"/>
         <property
                 name="username"
-                value="${jdbc_username}"/>
+                value="root"/>
         <property
                 name="password"
-                value="${jdbc_password}"/>
+                value="my-secret-pw"/>
         <property
                 name="driverClassName"
-                value="${jdbc_driverClassName}"/>
+                value="com.mysql.jdbc.Driver"/>
 
         <!-- 配置初始化大小、最小、最大 -->
         <property
                 name="initialSize"
-                value="${jdbc_initialSize}"/>
+                value="16"/>
         <property
                 name="minIdle"
-                value="${jdbc_minIdle}"/>
+                value="16"/>
         <property
                 name="maxActive"
-                value="${jdbc_maxActive}"/>
+                value="200"/>
 
         <!-- 配置获取连接等待超时的时间 -->
         <property
                 name="maxWait"
-                value="${jdbc_maxWait}"/>
+                value="3000"/>
 
         <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
         <property
                 name="timeBetweenEvictionRunsMillis"
-                value="${jdbc_timeBetweenEvictionRunsMillis}"/>
+                value="60000"/>
 
         <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
         <property
                 name="minEvictableIdleTimeMillis"
-                value="${jdbc_minEvictableIdleTimeMillis}"/>
+                value="300000"/>
 
         <property
                 name="testWhileIdle"
-                value="${jdbc_testWhileIdle}"/>
+                value="true"/>
         <property
                 name="testOnBorrow"
-                value="${jdbc_testOnBorrow}"/>
+                value="false"/>
         <property
                 name="validationQuery"
-                value="${jdbc_validationQuery}"/>
+                value="SELECT 1"/>
     </bean>
 
 

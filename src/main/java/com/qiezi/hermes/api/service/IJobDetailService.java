@@ -1,5 +1,6 @@
 package com.qiezi.hermes.api.service;
 
+import com.qiezi.hermes.api.exception.HasApplyForJobException;
 import com.qiezi.hermes.api.model.JobDescModel;
 
 /**
@@ -7,4 +8,6 @@ import com.qiezi.hermes.api.model.JobDescModel;
  */
 public interface IJobDetailService {
     public JobDescModel getJobDescById(int jobId);
+
+    public int applyJobById(int jobId, int userId) throws HasApplyForJobException;
 }

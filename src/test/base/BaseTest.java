@@ -1,10 +1,11 @@
 package base;
 
+import com.qiezi.hermes.api.Bootstrap;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,8 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:applicationContext.xml")
+@SpringApplicationConfiguration(classes = Bootstrap.class)
 @Transactional
+//AbstractTransactionalJUnit4SpringContextTests
 public class BaseTest extends AbstractTransactionalJUnit4SpringContextTests {
     @Before
     public void setUp() throws Exception {

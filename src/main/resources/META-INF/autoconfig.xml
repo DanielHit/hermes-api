@@ -3,9 +3,6 @@
     <template-resources>
         <resource template="applicationContext.xml" target="applicationContext.xml" />
         <resource template="applicationContext-db.xml" target="applicationContext-db.xml" />
-        <resource template="applicationContext-cache.xml" target="applicationContext-cache.xml" />
-        <resource template="applicationContext-http.xml" target="applicationContext-http.xml" />
-        <resource template="biz-async-task.xml" target="biz-async-task.xml" />
         <resource template="config.properties" target="config.properties" />
         <resource template="log4j2.xml" target="log4j2.xml" />
         <resource template="spring-mvc.xml" target="../webapp/WEB-INF/spring-mvc.xml" />

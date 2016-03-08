@@ -240,10 +240,18 @@
             <artifactId>elasticsearch</artifactId>
             <version>2.2.0</version>
         </dependency>
+<<<<<<< HEAD
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
+=======
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.8.6</version>
+>>>>>>> a4bad6bfcce9d4d104fe8c52b364f670e442cf51
         </dependency>
     </dependencies>
 
@@ -326,6 +334,27 @@
                     <argLine>-Dfile.encoding=UTF-8</argLine>
                 </configuration>
             </plugin>
+
+            <!--<plugin>-->
+                <!--<groupId>com.meituan.service.mobile</groupId>-->
+                <!--<artifactId>autoconfig-maven-plugin</artifactId>-->
+                <!--<version>0.0.4</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<phase>validate</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>generate</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+                <!--<configuration>-->
+                    <!--<envBase>src/main/resources/META-INF/environments</envBase>-->
+                    <!--<templateBase>src/main/resources/META-INF/templates</templateBase>-->
+                    <!--<targetBase>src/main/resources</targetBase>-->
+                    <!--<config>src/main/resources/META-INF/autoconfig.xml</config>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+
         </plugins>
     </build>
 

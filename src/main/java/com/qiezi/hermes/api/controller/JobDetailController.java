@@ -49,6 +49,24 @@ public class JobDetailController {
     public Map<String, Object> applyJob(@RequestParam("jobId") int jobId, @RequestParam("userId") int userId) {
         Map<String, Object> resultMap = new HashMap<>();
 
+        try {
+            if (jobDetailService.applyJobById(jobId, userId) == 1) {
+                resultMap.put("data", "1");         // 1 代表申请成功
+                resultMap.put("status", 200);
+                resultMap.put("message", "success");
+            } else {
+                resultMap.put("data", jobDetailService.applyJobById(jobId, userId));         // 1代表已经申请过
+                resultMap.put("status", 200);
+                resultMap.put("message", "success");
+            }
+
+        } catch (Exception e) {
+
+            logger.error("applyJob error " + e);
+            resultMap.put("status", 500);
+            resultMap.put("message", e.toString());
+        }
+
         return resultMap;
     }
 

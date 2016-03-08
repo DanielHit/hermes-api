@@ -4,7 +4,7 @@
 
     <sql id="job_desc">
       id, city_id, area_id, cate_id, job_name, job_type, welfare, experience, degree, gender, salary_min, salary_max,
-      img_url, welfare ,address, longitude,latitude, post_time, post_user_id, company_name, job_content, company_desc, service_status,
+       welfare , job_img, address, longitude,latitude, post_time, post_user_id, company_name, job_content, company_desc, service_status,
       status
     </sql>
 

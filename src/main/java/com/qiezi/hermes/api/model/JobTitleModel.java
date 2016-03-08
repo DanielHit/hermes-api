@@ -8,6 +8,7 @@ import java.io.Serializable;
 public class JobTitleModel implements Serializable {
 
     private static final long serialVersionUID = 484754020880086195L;
+
     private int jobId;
     private String jobName;
     private int minSalary;

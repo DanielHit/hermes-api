@@ -118,6 +118,7 @@ public class JobSearchSearviceImpl implements IJobSearchService {
 			jobESModel.setAreaId(jobDescDO.getAreaId());
 			jobESModel.setDegree(jobDescDO.getDegree());
 			jobESModel.setExperience(jobDescDO.getExperience());
+			jobESModel.setJobContent(jobDescDO.getJobContent());
 			Date postTime = jobDescDO.getPostTime();
 			if (postTime != null) {
 				jobESModel.setCreateTimeMillis(jobDescDO.getPostTime().getTime());

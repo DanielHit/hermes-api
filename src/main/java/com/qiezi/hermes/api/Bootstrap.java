@@ -1,16 +1,11 @@
 package com.qiezi.hermes.api;
 
-import com.qiezi.hermes.api.config.JdbcConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.ImportResource;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
@@ -26,6 +21,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @ComponentScan
 @EnableScheduling
 @EnableElasticsearchRepositories
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class Bootstrap {
 	public static void main(String[] args) {
 		SpringApplication.run(Bootstrap.class);

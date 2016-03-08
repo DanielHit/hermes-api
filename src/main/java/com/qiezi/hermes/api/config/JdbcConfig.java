@@ -66,26 +66,4 @@ public class JdbcConfig {
 		sqlSessionFactoryBean.setConfigLocation(new ClassPathResource("mybatis/sqlmap-config.xml"));
 		return sqlSessionFactoryBean;
 	}
-//	@Bean
-//	public SqlSessionFactory sessionFactory() throws Exception {
-//		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-//		sqlSessionFactoryBean.setDataSource(dataSource());
-//		sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("mybatis/mapper/*.xml"));
-//		sqlSessionFactoryBean.setConfigLocation(new ClassPathResource("mybatis/sqlmap-config.xml"));
-//		return sqlSessionFactoryBean.getObject();
-//	}
-
-//	@Bean
-//	public SqlSessionTemplate sqlSessionTemplate() throws Exception {
-//		return new SqlSessionTemplate(sqlSessionFactoryBean());
-//	}
-//
-//	@Bean
-//	public MapperScannerConfigurer mapperScannerConfigurer() {
-//		MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
-//		mapperScannerConfigurer.setBasePackage("com.qiezi.hermes.api.dao");
-//		mapperScannerConfigurer.setSqlSessionTemplateBeanName("sqlSessionTemplate");
-//		return mapperScannerConfigurer;
-//	}
-
 }

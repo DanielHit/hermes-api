@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autoconfig>
+    <template-resources>
+        <resource template="applicationContext.xml" target="applicationContext.xml" />
+        <resource template="applicationContext-db.xml" target="applicationContext-db.xml" />
+        <resource template="applicationContext-cache.xml" target="applicationContext-cache.xml" />
+        <resource template="applicationContext-http.xml" target="applicationContext-http.xml" />
+        <resource template="biz-async-task.xml" target="biz-async-task.xml" />
+        <resource template="config.properties" target="config.properties" />
+        <resource template="log4j2.xml" target="log4j2.xml" />
+        <resource template="spring-mvc.xml" target="../webapp/WEB-INF/spring-mvc.xml" />
+        <resource template="web.xml" target="../webapp/WEB-INF/web.xml" />
+        <resource template="boot.properties" target="jetty/boot.properties" />
+        <resource template="boot.ini" target="jetty/boot.ini" />
+        <resource template="jetty.xml" target="jetty/jetty.xml" />
+        <resource template="jmonitor.properties" target="jmonitor.properties" />
+    </template-resources>
+</autoconfig>

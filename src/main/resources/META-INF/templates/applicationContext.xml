@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:task="http://www.springframework.org/schema/task"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    #if($task == 'on')
+    <task:annotation-driven/>
+    #end
+    <!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
+    <context:component-scan base-package="com.qiezi.hermes.api">
+        <context:exclude-filter
+                type="annotation"
+                expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter
+                type="annotation"
+                expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+    </context:component-scan>
+
+    <context:component-scan base-package="com.qiezi.hermes.api">
+    </context:component-scan>
+    <import resource="classpath:applicationContext-db.xml"/>
+    <import resource="classpath:applicationContext-cache.xml"/>
+    <import resource="classpath:applicationContext-http.xml"/>
+    <bean
+            id="propertyConfigurer"
+            class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer">
+        <property
+                name="properties"
+                ref="configProperties"/>
+    </bean>
+    <bean
+            id="configProperties"
+            class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath:config.properties</value>
+            </list>
+        </property>
+        <property name="fileEncoding" value="UTF-8"/>
+    </bean>
+</beans>

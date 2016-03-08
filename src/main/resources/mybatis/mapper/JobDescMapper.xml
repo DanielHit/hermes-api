@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiezi.hermes.api.dao.IJobDescDAO">
+
+    <sql id="job_desc">
+      id, city_id, area_id, cate_id, job_name, job_type, welfare, experience, degree, gender, salary_min, salary_max,
+      img_url, welfare ,address, longitude,latitude, post_time, post_user_id, company_name, job_content, company_desc, service_status,
+      status
+    </sql>
+
+    <select id="getJobDescListBySelectParam" resultType="com.qiezi.hermes.api.domain.JobDescDO">
+        SELECT
+        <include refid="job_desc"/>
+        FROM job_desc
+        WHERE city_id=#{cityId} AND
+        area_id=#{areaId} AND cate_id = #{cateId} AND experience = #{experience} AND degree = #{degree}
+        AND salary=#{salary} AND post_time > #{postTime} AND status = 1 AND service_status = 1
+        ORDER BY post_time DESC
+    </select>
+
+    <select id="getJobDescByJobId" resultType="com.qiezi.hermes.api.domain.JobDescDO">
+        SELECT
+        <include refid="job_desc"/>
+        FROM job_desc
+        WHERE
+        id = #{jobId}
+    </select>
+    <select id="getJobDescList" resultType="com.qiezi.hermes.api.domain.JobDescDO">
+        SELECT
+        <include refid="job_desc"/>
+        FROM job_desc
+        LIMIT #{offset}, #{limit}
+    </select>
+    <select id="countJob" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM job_desc
+    </select>
+
+</mapper>

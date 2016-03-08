@@ -15,7 +15,6 @@ public class JobDescDO {
     private int degree;
     private int gender;
     private int salary;
-    private String imgUrl;
     private String address;
     private double longitude;
     private double latitude;
@@ -100,14 +99,6 @@ public class JobDescDO {
 
     public void setGender(int gender) {
         this.gender = gender;
-    }
-
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
     }
 
     public String getAddress() {
@@ -236,7 +227,6 @@ public class JobDescDO {
         sb.append(", degree=").append(degree);
         sb.append(", gender=").append(gender);
         sb.append(", salary=").append(salary);
-        sb.append(", imgUrl='").append(imgUrl).append('\'');
         sb.append(", address='").append(address).append('\'');
         sb.append(", longitude=").append(longitude);
         sb.append(", latitude=").append(latitude);

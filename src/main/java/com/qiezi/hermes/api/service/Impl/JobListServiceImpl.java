@@ -63,7 +63,7 @@ public class JobListServiceImpl implements IJobListService {
             jobTitleModel.setJobId(jobDescDO.getId());
             jobTitleModel.setJobName(jobDescDO.getJobName());
             jobTitleModel.setAddress(jobDescDO.getAddress());
-            jobTitleModel.setImgUrl(jobDescDO.getImgUrl());
+            jobTitleModel.setImgUrl(jobDescDO.getJobImg());
             jobTitleModel.setMaxSalary(SalaryEnum.FirstLevelSalary.getMaxSalary());
             jobTitleModel.setMinSalary(SalaryEnum.SecondLevelSalary.getMinSalary());
             jobTitleModel.setPostTime(jobDescDO.getPostTime().toString());

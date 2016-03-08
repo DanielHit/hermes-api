@@ -45,7 +45,7 @@ public class JobDetailController {
     }
 
     // 申请职位
-    @RequestMapping(value = "/applyJob", method = RequestMethod.POST)
+    @RequestMapping(value = "/applyJob", method = RequestMethod.GET)
     public Map<String, Object> applyJob(@RequestParam("jobId") int jobId, @RequestParam("userId") int userId) {
         Map<String, Object> resultMap = new HashMap<>();
 

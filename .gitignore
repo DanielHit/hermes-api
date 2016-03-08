@@ -4,3 +4,15 @@ logs
 target
 coverage-report
 *.DS_Store
+
+src/main/resources/applicationContext-cache.xml
+src/main/resources/applicationContext-http.xml
+src/main/resources/applicationContext-db.xml
+src/main/resources/applicationContext.xml
+src/main/resources/biz-async-task.xml
+src/main/resources/jetty/
+src/main/resources/log4j2.xml
+src/main/resources/thrift-client.xml
+src/main/resources/thrift-server.xml
+src/main/webapp/WEB-INF
+config.properties

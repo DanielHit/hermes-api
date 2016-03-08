@@ -1,13 +1,13 @@
 package com.qiezi.hermes.api.dao;
 
-import base.BaseNonTransactionTest;
+import base.BaseTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by Daniel on 3/8/16.
  */
-public class IApplicationDAOTest extends BaseNonTransactionTest {
+public class IApplicationDAOTest extends BaseTest {
 
     @Autowired
     private IApplicationDAO applicationDAO;
@@ -21,6 +21,6 @@ public class IApplicationDAOTest extends BaseNonTransactionTest {
     @Test
     public void testGetApplicationByUserIdAndJobId() throws Exception {
         System.out.println("get here !");
-        System.out.println(applicationDAO.getApplicationByUserIdAndJobId(10002, 12345));
+        System.out.println(applicationDAO.getApplicationByUserIdAndJobId(10001, 12345));
     }
 }

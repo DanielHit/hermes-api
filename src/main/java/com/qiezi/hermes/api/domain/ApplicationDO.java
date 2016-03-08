@@ -1,5 +1,7 @@
 package com.qiezi.hermes.api.domain;
 
+import java.util.Date;
+
 /**
  * Created by Daniel on 3/8/16.
  */

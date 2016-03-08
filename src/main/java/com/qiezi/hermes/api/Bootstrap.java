@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAu
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
@@ -22,6 +24,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @ImportResource(locations = "applicationContext-db.xml")
 @EnableScheduling
 @EnableElasticsearchRepositories
+@PropertySources(
+		@PropertySource("config.properties")
+)
 public class Bootstrap {
 	public static void main(String[] args) {
 		SpringApplication.run(Bootstrap.class);

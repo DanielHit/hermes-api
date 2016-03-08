@@ -19,7 +19,7 @@ import java.util.Map;
 @RequestMapping("/api/user/application")
 public class ApplicationController {
 
-	@Resource
+//	@Resource
 	private IApplicationDAO applicationDAO;
 
 	@RequestMapping("/list")

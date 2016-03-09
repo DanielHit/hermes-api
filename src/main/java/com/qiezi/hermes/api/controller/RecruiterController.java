@@ -24,12 +24,13 @@ public class RecruiterController {
     @RequestMapping(value = "/postJob", method = RequestMethod.POST)
     public Map<String, Object> postNewJob(@RequestParam(required = true) int cityId, @RequestParam(required = true) int areaId,
                                           @RequestParam(required = true) String jobName, @RequestParam(required = true) int cateId,
-                                          @RequestParam(required = true) String jobContent, @RequestParam(required = true) String companyDesc, @RequestParam(required = true) int jobType, @RequestParam(required = true) String companyName,
+                                          @RequestParam(required = true) String jobContent, @RequestParam(required = true) String companyDesc, @RequestParam(required = false ) int jobType, @RequestParam(required = true) String companyName,
                                           @RequestParam(required = true) int salary, @RequestParam(required = true) String welfare, @RequestParam(required = true) int experience, @RequestParam(required = true) String address,
                                           @RequestParam(required = true) int degree, @RequestParam(required = true) String employerName, @RequestParam(required = true) int userId, @RequestParam(required = true) String employerPostion,
                                           @RequestParam(required = true) int phoneNum, @RequestParam(required = true) String jobImg, @RequestParam(required = true) double longitude, @RequestParam(required = true) double latitude) {
 
         PostNewJobRequestParam requestParam = buildPostNewJobRequestParam(jobName, cateId, jobContent, companyDesc, jobType, salary, welfare, address, employerName, userId, employerPostion, phoneNum);
+
         int result = jobDescDAO.addNewJobDesc(cityId, areaId, cateId, jobName, jobType, salary, welfare, experience, degree, salary, salary, jobImg, address,
                 longitude, latitude, userId, companyName, jobContent, companyDesc);
         try {

@@ -6,7 +6,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -16,6 +15,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -41,12 +42,16 @@ public class PullGanjiJob {
 
 	@PostConstruct
 	public void init() {
-//		startPull();
-		pullDetail();
+		Executors.newSingleThreadExecutor().submit(new Runnable() {
+			@Override
+			public void run() {
+				startPull();
+			}
+		});
 	}
 
 	public void startPull() {
-
+		Random random = new Random();
 		for (int i = 0; i < 2000; i++) {
 			try {
 				Document document = Jsoup.connect(list + i).cookies(cookieKV).userAgent(userAgent).get();
@@ -62,10 +67,12 @@ public class PullGanjiJob {
 						e.printStackTrace();
 					}
 				}
-			} catch (IOException e) {
+				Thread.sleep(random.nextInt(2000));
+			} catch (IOException | InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
+		pullDetail();
 	}
 
 
@@ -73,6 +80,7 @@ public class PullGanjiJob {
 		Pattern timePattern = Pattern.compile("\\d{2}-\\d{2} \\d{2}:\\d{2}");
 		List<GanjiId> all = ganjiIdRepo.findAll();
 		for (GanjiId ganjiId : all) {
+			Random random = new Random();
 			try {
 				int id = ganjiId.getGanjiId();
 				String url = detailUrl + id + "x";
@@ -101,6 +109,7 @@ public class PullGanjiJob {
 					ganjiJob.setAddress(address);
 					ganjiJob.setModTime(mod);
 					ganjiRepo.saveAndFlush(ganjiJob);
+					Thread.sleep(random.nextInt(2000));
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -109,9 +118,4 @@ public class PullGanjiJob {
 			}
 		}
 	}
-
-	public static void main(String[] args) throws IOException {
-		System.out.println(cookieKV);
-	}
-
 }

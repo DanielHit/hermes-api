@@ -13,8 +13,10 @@ import org.apache.commons.collections.CollectionUtils;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.MultiMatchQueryBuilder;
+import org.elasticsearch.index.query.MultiTermQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.RangeQueryBuilder;
+import org.elasticsearch.index.query.TermQueryBuilder;
 import org.elasticsearch.search.sort.SortBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
@@ -134,12 +136,13 @@ public class JobSearchSearviceImpl implements IJobSearchService {
 	public List<JobESModel> jobESModels(String searchKey) {
 		BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
 		if (!Strings.isNullOrEmpty(searchKey)) {
-			MultiMatchQueryBuilder multiMatchQueryBuilder = QueryBuilders.multiMatchQuery(searchKey, "jobName", "jobContent", "company");
-			BoolQueryBuilder keyQueryBuilder = QueryBuilders.boolQuery();
-			keyQueryBuilder.should(multiMatchQueryBuilder);
-			boolQueryBuilder.must(keyQueryBuilder);
+			MultiMatchQueryBuilder multiMatchQueryBuilder = QueryBuilders.multiMatchQuery(searchKey, "jobName", "jobContent", "company").analyzer("ik");
+			boolQueryBuilder.must(multiMatchQueryBuilder);
 		}
-		return elasticsearchTemplate.queryForList(new NativeSearchQuery(boolQueryBuilder), JobESModel.class);
+		SortBuilder sortBuilder = SortBuilders.scoreSort();
+		List<SortBuilder> sortBuilders = Lists.newArrayList(sortBuilder);
+		NativeSearchQuery nativeSearchQuery = new NativeSearchQuery(boolQueryBuilder, null, sortBuilders);
+		return elasticsearchTemplate.queryForList(nativeSearchQuery, JobESModel.class);
 	}
 
 	@Override

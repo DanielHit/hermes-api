@@ -71,7 +71,7 @@ public class JobSearchSearviceImpl implements IJobSearchService {
 		executorService.shutdown();
 	}
 
-	@Scheduled(cron = "0/10 * * * * *")
+	@Scheduled(cron = "0 0/10 * * * *")
 	public void batchIndex() {
 		int total = jobDescDAO.countJob();
 		int batchSize = 100;
@@ -203,20 +203,25 @@ public class JobSearchSearviceImpl implements IJobSearchService {
 			boolQueryBuilder.must(keyQueryBuilder);
 		}
 		String sortType = selectRequestParam.getSortType();
-		SortBuilder fieldSortBuilder = SortBuilders.fieldSort("createTimeMillis").order(SortOrder.DESC);
-		if ("default".equals(sortType)) {
-			// 默认按照发布时间降序
-			fieldSortBuilder = SortBuilders.fieldSort("createTimeMillis").order(SortOrder.DESC);
-		} else if ("salaryUp".equals(sortType)) {
-			fieldSortBuilder = SortBuilders.fieldSort("salaryMax").order(SortOrder.ASC);
-		} else if ("salaryDown".equals(sortType)) {
-			fieldSortBuilder = SortBuilders.fieldSort("salaryMax").order(SortOrder.DESC);
-		} else if ("postTimeUp".equals(sortType)) {
-			fieldSortBuilder = SortBuilders.fieldSort("createTimeMillis").order(SortOrder.ASC);
-		} else if ("postTimeDown".equals(sortType)) {
-			fieldSortBuilder = SortBuilders.fieldSort("createTimeMillis").order(SortOrder.DESC);
+		SortBuilder sortBuilder;
+		if (!Strings.isNullOrEmpty(searchKey)) {
+			sortBuilder = SortBuilders.scoreSort();
+		} else {
+			sortBuilder = SortBuilders.fieldSort("createTimeMillis").order(SortOrder.DESC);
+			if ("default".equals(sortType)) {
+				// 默认按照发布时间降序
+				sortBuilder = SortBuilders.fieldSort("createTimeMillis").order(SortOrder.DESC);
+			} else if ("salaryUp".equals(sortType)) {
+				sortBuilder = SortBuilders.fieldSort("salaryMax").order(SortOrder.ASC);
+			} else if ("salaryDown".equals(sortType)) {
+				sortBuilder = SortBuilders.fieldSort("salaryMax").order(SortOrder.DESC);
+			} else if ("postTimeUp".equals(sortType)) {
+				sortBuilder = SortBuilders.fieldSort("createTimeMillis").order(SortOrder.ASC);
+			} else if ("postTimeDown".equals(sortType)) {
+				sortBuilder = SortBuilders.fieldSort("createTimeMillis").order(SortOrder.DESC);
+			}
 		}
-		NativeSearchQuery nativeSearchQuery = new NativeSearchQuery(boolQueryBuilder, null, Collections.singletonList(fieldSortBuilder));
+		NativeSearchQuery nativeSearchQuery = new NativeSearchQuery(boolQueryBuilder, null, Collections.singletonList(sortBuilder));
 		int offset = selectRequestParam.getOffset();
 		int limit = selectRequestParam.getLimit();
 		if (limit > 100) {

@@ -25,15 +25,25 @@
         WHERE
         id = #{jobId}
     </select>
+
     <select id="getJobDescList" resultType="com.qiezi.hermes.api.domain.JobDescDO">
         SELECT
         <include refid="job_desc"/>
         FROM job_desc
         LIMIT #{offset}, #{limit}
     </select>
+
     <select id="countJob" resultType="java.lang.Integer">
         SELECT COUNT(1)
         FROM job_desc
     </select>
+
+
+    <insert id="addNewJobDesc">
+        INSERT INTO job_desc (city_id, area_id, cate_id, job_name, job_type, welfare, experience, degree , salary, salary_min, salary_max , job_img, address, longitude,latitude, post_time, post_user_id, company_name, job_content, company_desc, service_status,
+        status)
+        VALUES (#{cityId}, #{areaId},#{cateId}, #{jobName}, #{jobType}, #{welfare}, #{experience}, #{degree} ,
+        #{salary}, #{salaryMin}, #{salaryMax}, #{jobImg}, #{address},#{longitude},#{latitude},now(), #{userId}, #{companyName}, #{jobContent}, #{companyDesc},1,1);
+    </insert>
 
 </mapper>

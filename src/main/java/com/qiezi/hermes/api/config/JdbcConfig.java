@@ -52,10 +52,10 @@ public class JdbcConfig {
 		return dataSource;
 	}
 
-	@Bean
-	public DataSourceTransactionManager transactionManager() {
-		return new DataSourceTransactionManager(dataSource());
-	}
+//	@Bean
+//	public DataSourceTransactionManager transactionManager() {
+//		return new DataSourceTransactionManager(dataSource());
+//	}
 
 
 	@Bean

@@ -333,26 +333,49 @@
             </plugin>
 
             <!--<plugin>-->
-                <!--<groupId>com.meituan.service.mobile</groupId>-->
-                <!--<artifactId>autoconfig-maven-plugin</artifactId>-->
-                <!--<version>0.0.4</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<phase>validate</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>generate</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-                <!--<configuration>-->
-                    <!--<envBase>src/main/resources/META-INF/environments</envBase>-->
-                    <!--<templateBase>src/main/resources/META-INF/templates</templateBase>-->
-                    <!--<targetBase>src/main/resources</targetBase>-->
-                    <!--<config>src/main/resources/META-INF/autoconfig.xml</config>-->
-                <!--</configuration>-->
+            <!--<groupId>com.meituan.service.mobile</groupId>-->
+            <!--<artifactId>autoconfig-maven-plugin</artifactId>-->
+            <!--<version>0.0.4</version>-->
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<phase>validate</phase>-->
+            <!--<goals>-->
+            <!--<goal>generate</goal>-->
+            <!--</goals>-->
+            <!--</execution>-->
+            <!--</executions>-->
+            <!--<configuration>-->
+            <!--<envBase>src/main/resources/META-INF/environments</envBase>-->
+            <!--<templateBase>src/main/resources/META-INF/templates</templateBase>-->
+            <!--<targetBase>src/main/resources</targetBase>-->
+            <!--<config>src/main/resources/META-INF/autoconfig.xml</config>-->
+            <!--</configuration>-->
             <!--</plugin>-->
 
         </plugins>
     </build>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <name>Maven Plugin Repository</name>
+            <url>http://repo1.maven.org/maven2</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-snapshots</id>
+            <url>http://repo.spring.io/snapshot</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>spring-milestones</id>
+            <url>http://repo.spring.io/milestone</url>
+        </pluginRepository>
+    </pluginRepositories>
 
 </project>

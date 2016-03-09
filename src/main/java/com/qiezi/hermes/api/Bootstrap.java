@@ -23,7 +23,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableElasticsearchRepositories
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 public class Bootstrap {
-	public static void main(String[] args) {
-		SpringApplication.run(Bootstrap.class);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Bootstrap.class);
+    }
 }

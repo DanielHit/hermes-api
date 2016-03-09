@@ -5,7 +5,6 @@ import com.qiezi.hermes.api.dao.IApplicationDAO;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.Map;
 
 /**
@@ -26,4 +25,6 @@ public class ApplicationController {
 	public Map<String, ? extends Object> applicationList(int userId) {
 		return ImmutableMap.of("data", applicationDAO.getByUserId(userId));
 	}
+
+	
 }

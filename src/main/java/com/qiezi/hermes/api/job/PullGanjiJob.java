@@ -1,11 +1,13 @@
 package com.qiezi.hermes.api.job;
 
 import com.google.common.base.Splitter;
+import com.qiezi.hermes.api.dao.IJobDescDAO;
 import okhttp3.OkHttpClient;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -39,17 +41,20 @@ public class PullGanjiJob {
 	private GanjiIdRepo ganjiIdRepo;
 	@Resource
 	private GanjiRepo ganjiRepo;
+	@Resource
+	private IJobDescDAO jobDescDAO;
 
 	@PostConstruct
 	public void init() {
 		Executors.newSingleThreadExecutor().submit(new Runnable() {
 			@Override
 			public void run() {
-				startPull();
+				pullDetail();
 			}
 		});
 	}
 
+	@Scheduled(cron = "0 0 0/2 * * ?")
 	public void startPull() {
 		Random random = new Random();
 		for (int i = 0; i < 2000; i++) {
@@ -75,7 +80,14 @@ public class PullGanjiJob {
 		pullDetail();
 	}
 
+	public void sync() {
+		List<GanjiJob> ganjiJobs = ganjiRepo.findAll();
+		for (GanjiJob ganjiJob : ganjiJobs) {
+			jobDescDAO.addNewJobDesc(1, 123, 10001, ganjiJob.getTitle(), 0, 0, "", 0, 0, 0, 0, "", ganjiJob.getAddress(), 0, 0, 0, "", ganjiJob.getCompanyDetail(), "");
+		}
+	}
 
+	@Scheduled(cron = "0 30 0/1 * * ?")
 	public void pullDetail() {
 		Pattern timePattern = Pattern.compile("\\d{2}-\\d{2} \\d{2}:\\d{2}");
 		List<GanjiId> all = ganjiIdRepo.findAll();
@@ -84,6 +96,7 @@ public class PullGanjiJob {
 			try {
 				int id = ganjiId.getGanjiId();
 				String url = detailUrl + id + "x";
+				System.out.println("get detail " + id);
 				try {
 					Document document = Jsoup.connect(url).cookies(cookieKV).userAgent(userAgent).get();
 					document.select("#detail_info");
@@ -92,6 +105,7 @@ public class PullGanjiJob {
 					String address = document.select("#detail_info .table tr").get(2).select("td").text();
 					String detail = document.select("#detail_info .comm-desp").text();
 					String modTime = document.select("#detail_info .fc8d f12").text();
+
 					Matcher matcher = timePattern.matcher(modTime);
 					boolean b = matcher.find();
 					Date mod = new Date();

@@ -3,7 +3,7 @@
 <mapper namespace="com.qiezi.hermes.api.dao.IJobDescDAO">
 
     <sql id="job_desc">
-      id, city_id, area_id, cate_id, job_name, job_type, welfare, experience, degree, gender, salary_min, salary_max,
+      id, city_id, area_id, cate_id, job_name, job_type, welfare, experience, degree, salary_min, salary_max,
        welfare , job_img, address, longitude,latitude, post_time, post_user_id, company_name, job_content, company_desc, service_status,
       status
     </sql>

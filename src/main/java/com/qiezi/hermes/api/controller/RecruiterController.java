@@ -30,7 +30,6 @@ public class RecruiterController {
                                           @RequestParam(required = true) int phoneNum, @RequestParam(required = true) String jobImg, @RequestParam(required = true) double longitude, @RequestParam(required = true) double latitude) {
 
         PostNewJobRequestParam requestParam = buildPostNewJobRequestParam(jobName, cateId, jobContent, companyDesc, jobType, salary, welfare, address, employerName, userId, employerPostion, phoneNum);
-
         int result = jobDescDAO.addNewJobDesc(cityId, areaId, cateId, jobName, jobType, salary, welfare, experience, degree, salary, salary, jobImg, address,
                 longitude, latitude, userId, companyName, jobContent, companyDesc);
         try {

@@ -1,5 +1,5 @@
 jdbc:
-  jdbc-url: jdbc:mysql://10.4.242.114:5001/hermes_item?useUnicode=true&amp;connectTimeout=1000&amp;socketTimeout=3000&amp;characterEncoding=UTF-8
+  jdbc-url: jdbc:mysql://10.4.242.114:5001/hermes_item?useUnicode=true&connectTimeout=1000&socketTimeout=3000&characterEncoding=UTF-8
 ---
 spring:
   profiles: online
@@ -7,5 +7,5 @@ spring:
     elasticsearch:
       cluster-nodes: 100.104.30.23:9300
 jdbc:
-  jdbc-url: jdbc:mysql://100.104.30.23:5001/hermes_item?useUnicode=true&amp;connectTimeout=1000&amp;socketTimeout=3000&amp;characterEncoding=UTF-8
+  jdbc-url: jdbc:mysql://100.104.30.23:5001/hermes_item?useUnicode=true&connectTimeout=1000&socketTimeout=3000&characterEncoding=UTF-8
   jdbc-password: 5781245Hu

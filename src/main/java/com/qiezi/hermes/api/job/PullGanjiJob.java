@@ -80,7 +80,7 @@ public class PullGanjiJob {
 		pullDetail();
 	}
 
-	@Scheduled(cron = "0 30 0 * * ?")
+//	@Scheduled(cron = "0 30 0 * * ?")
 	public void sync() {
 		List<GanjiJob> ganjiJobs = ganjiRepo.findAll();
 		for (GanjiJob ganjiJob : ganjiJobs) {

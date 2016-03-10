@@ -49,12 +49,12 @@ public class PullGanjiJob {
 		Executors.newSingleThreadExecutor().submit(new Runnable() {
 			@Override
 			public void run() {
-				pullDetail();
+				sync();
 			}
 		});
 	}
 
-	@Scheduled(cron = "0 0 0/2 * * ?")
+	@Scheduled(cron = "0 0 0 * * ?")
 	public void startPull() {
 		Random random = new Random();
 		for (int i = 0; i < 2000; i++) {
@@ -80,6 +80,7 @@ public class PullGanjiJob {
 		pullDetail();
 	}
 
+	@Scheduled(cron = "0 30 0 * * ?")
 	public void sync() {
 		List<GanjiJob> ganjiJobs = ganjiRepo.findAll();
 		for (GanjiJob ganjiJob : ganjiJobs) {
@@ -87,7 +88,7 @@ public class PullGanjiJob {
 		}
 	}
 
-	@Scheduled(cron = "0 30 0/1 * * ?")
+	@Scheduled(cron = "0 30 0 * * ?")
 	public void pullDetail() {
 		Pattern timePattern = Pattern.compile("\\d{2}-\\d{2} \\d{2}:\\d{2}");
 		List<GanjiId> all = ganjiIdRepo.findAll();

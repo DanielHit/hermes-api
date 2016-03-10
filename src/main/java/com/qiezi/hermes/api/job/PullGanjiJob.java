@@ -44,7 +44,7 @@ public class PullGanjiJob {
 	@Resource
 	private IJobDescDAO jobDescDAO;
 
-	@PostConstruct
+//	@PostConstruct
 	public void init() {
 		Executors.newSingleThreadExecutor().submit(new Runnable() {
 			@Override

@@ -10,7 +10,6 @@ import org.jsoup.select.Elements;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -84,7 +83,8 @@ public class PullGanjiJob {
 	public void sync() {
 		List<GanjiJob> ganjiJobs = ganjiRepo.findAll();
 		for (GanjiJob ganjiJob : ganjiJobs) {
-			jobDescDAO.addNewJobDesc(1, 123, 10001, ganjiJob.getTitle(), 0, 0, "", 0, 0, 0, 0, "", ganjiJob.getAddress(), 0, 0, 0, "", ganjiJob.getCompanyDetail(), "");
+			//todo check post data
+//			jobDescDAO.addNewJobDesc(1, 123, 10001, ganjiJob.getTitle(), 0, 0, "", 0, 0, 0, 0, "", ganjiJob.getAddress(), 0, 0, 0, "", ganjiJob.getCompanyDetail(), "");
 		}
 	}
 

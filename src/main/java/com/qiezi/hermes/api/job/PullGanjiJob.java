@@ -83,6 +83,7 @@ public class PullGanjiJob {
 	public void sync() {
 		List<GanjiJob> ganjiJobs = ganjiRepo.findAll();
 		for (GanjiJob ganjiJob : ganjiJobs) {
+			//todo check post data
 //			jobDescDAO.addNewJobDesc(1, 123, 10001, ganjiJob.getTitle(), 0, 0, "", 0, 0, 0, 0, "", ganjiJob.getAddress(), 0, 0, 0, "", ganjiJob.getCompanyDetail(), "");
 		}
 	}

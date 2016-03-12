@@ -10,8 +10,8 @@ import java.util.Map;
  * 求职者相关的所有后台接口
  */
 @RestController
-@RequestMapping("/api/user/seeker")
-public class SeekerController {
+@RequestMapping("/api/user/candidate")
+public class CandidateController {
 
     // 查看个人简历接口
     @RequestMapping(value = "/getResume", method = RequestMethod.GET)
@@ -22,9 +22,12 @@ public class SeekerController {
 
     // 修改个人简历接口
     @RequestMapping(value = "/editResume", method = RequestMethod.POST)
-    public Map<String, Object> changeResume(@RequestParam(required = true, defaultValue = "10") int ci, @ModelAttribute("appVersion") float appVersion, HttpServletRequest request) {
-        return ImmutableMap.<String, Object>builder().put("data", "fuck").build();
+    public Map<String, Object> postNewJob(@RequestParam(required = true) int userId, @RequestParam(required = false) String userImg, @RequestParam(required = true) String phoneNum,
+                                          @RequestParam(required = true) String address, @RequestParam(required = false) String education, @RequestParam(required = false) String workContent,
+                                          @RequestParam(required = true) String workYear, @RequestParam(required = true) String degree,
+                                          @RequestParam(required = true) String date, @RequestParam(required = true) String cateId) {
 
+        return ImmutableMap.<String, Object>builder().put("data", "fuck").build();
     }
 
     // 查看个人招聘状态接口

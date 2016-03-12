@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qiezi.hermes.api.dao.IResumeDAO">
+
+    <sql id="resume">
+        id, user_id, user_img, phone_num, address, work_year, work_content, degree, education_content,
+        start_date, status
+    </sql>
+
+
+    <select id="getResumeByUserId" resultType="com.qiezi.hermes.api.domain.ResumeDO">
+        SELECT
+        <include refid="resume"/>
+        FROM resume
+        WHERE
+        user_id = #{userId}
+    </select>
+
+    <update id="editResume">
+        UPDATE resume  SET
+      user_img = #{userImg},
+      phone_num = #{phoneNum},
+      address =#{address},
+      work_year=#{workYear},
+      work_content = #{workContent},
+      degree = #{degree},
+      education_content = #{educationContent},
+      start_date = #{startDate},
+      status = 1
+        where user_id = #{userId}
+    </update>
+
+    <insert id="addResume">
+        INSERT INTO resume (user_id, user_img, phone_num, address, work_year, work_content, degree, education_content,
+        start_date,status)
+        VALUES (#{userId}, #{userImg},#{phoneNum}, #{address}, #{workYear}, #{workContent}, #{degree}, #{educationContent} ,
+        #{startDate},1);
+    </insert>
+
+</mapper>

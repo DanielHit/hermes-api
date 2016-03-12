@@ -2,6 +2,8 @@ package com.qiezi.hermes.api.controller;
 
 import com.google.common.collect.ImmutableMap;
 import com.qiezi.hermes.api.dao.IResumeDAO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,11 +19,20 @@ public class CandidateController {
     @Autowired
     private IResumeDAO resumeDAO;
 
+    public static final Logger logger = LoggerFactory.getLogger(CandidateController.class);
+
     // 查看个人简历接口
     @RequestMapping(value = "/getResume", method = RequestMethod.GET)
     public Map<String, Object> getUserResume(@RequestParam(required = true) int userId) {
 
-        return ImmutableMap.<String, Object>builder().put("data", resumeDAO.getResumeByUserId(userId)).build();
+        try {
+            if (resumeDAO.getResumeByUserId(userId) != null) {
+                return ImmutableMap.<String, Object>builder().put("data", resumeDAO.getResumeByUserId(userId)).put("status", 200).build();
+            }
+        } catch (Exception e) {
+            logger.info("getUserResume {}", e);
+        }
+        return ImmutableMap.<String, Object>builder().put("status", 500).build();
     }
 
     // 修改个人简历接口

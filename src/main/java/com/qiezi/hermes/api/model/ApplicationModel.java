@@ -10,10 +10,12 @@ public class ApplicationModel implements Serializable {
     private static final long serialVersionUID = 8868485949541602137L;
 
     private int id;
+    private int jobId;
     private String jobName;
     private String hireManager;
     private String company;
     private String stage;
+    private String date;
     private int days;
 
     public int getId() {
@@ -64,10 +66,27 @@ public class ApplicationModel implements Serializable {
         this.days = days;
     }
 
+    public int getJobId() {
+        return jobId;
+    }
+
+    public void setJobId(int jobId) {
+        this.jobId = jobId;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("ApplicationModel{");
         sb.append("id=").append(id);
+        sb.append(", jobId=").append(jobId);
         sb.append(", jobName='").append(jobName).append('\'');
         sb.append(", hireManager='").append(hireManager).append('\'');
         sb.append(", company='").append(company).append('\'');

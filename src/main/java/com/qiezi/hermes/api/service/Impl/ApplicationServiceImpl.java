@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -36,9 +35,11 @@ public class ApplicationServiceImpl implements IApplicationService {
         for (ApplicationDO applicationDO : applicationDOs) {
             ApplicationModel model = new ApplicationModel();
             model.setId(applicationDO.getId());
-            model.setJobName(jobDescDAO.getJobDescByJobId(applicationDO.getId()).getJobName());
             model.setStage(String.valueOf(applicationDO.getStage()));
+            model.setJobId(applicationDO.getJobId());
+            model.setDate(applicationDO.getDate());
             model.setHireManager(jobDescDAO.getJobDescByJobId(applicationDO.getJobId()).getEmployerName());
+            model.setJobName(jobDescDAO.getJobDescByJobId(applicationDO.getJobId()).getJobName());
             try {
                 long days = DateFormatUtils.getIntervalDays(applicationDO.getDate());
                 model.setDays((int) days);

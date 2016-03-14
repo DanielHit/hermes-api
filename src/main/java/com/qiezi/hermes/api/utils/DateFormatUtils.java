@@ -32,8 +32,4 @@ public class DateFormatUtils {
         return day;
     }
 
-    // 报价查询
-    public static void main(String[] args) throws ParseException {
-        System.out.println(getIntervalDays("2016-02-14 10:54:54"));
-    }
 }

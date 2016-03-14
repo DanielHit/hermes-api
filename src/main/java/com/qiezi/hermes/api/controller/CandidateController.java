@@ -64,15 +64,14 @@ public class CandidateController {
         } catch (Exception e) {
             return ImmutableMap.<String, Object>builder().put("data", 0).build();
         }
-
     }
 
 
     // 查看个人招聘状态接口
     @RequestMapping(value = "/getApplication", method = RequestMethod.GET)
-    public Map<String, Object> getApplication(@RequestParam(required = true, defaultValue = "10") int ci, @ModelAttribute("appVersion") float appVersion, HttpServletRequest request) {
-        return ImmutableMap.<String, Object>builder().put("data", "fuck").build();
+    public Map<String, Object> getApplication(@RequestParam(required = true) int userId) {
 
+        return ImmutableMap.<String, Object>builder().put("data", "fuck").build();
     }
 
     // 产看个人信箱 -> 沟通工具的东西

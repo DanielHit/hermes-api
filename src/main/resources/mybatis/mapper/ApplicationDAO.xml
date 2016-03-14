@@ -2,12 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.qiezi.hermes.api.dao.IApplicationDAO">
 
-    <sql id="BASE_COLUMN">
-        id, job_id, user_id, `date`, stage, status
+    <sql id="application">
+        id, job_id,user_id,date, stage,status
     </sql>
+
     <select id="getByUserId" resultType="com.qiezi.hermes.api.domain.ApplicationDO">
-        SELECT <include refid="BASE_COLUMN"/>
+        SELECT
+        <include refid="application"/>
         FROM application
         WHERE id = #{userId}
     </select>
+
+
+    <insert id="addApplication">
+        INSERT INTO application (user_id,job_id, date, status, stage)
+        VALUES ( #{userId},  #{jobId}, now(), 1, 0)
+    </insert>
+
+    <select id="getApplicationByUserIdAndJobId" resultType="com.qiezi.hermes.api.domain.ApplicationDO">
+        select
+        <include refid="application"/>
+        from application WHERE user_id = #{userId} AND job_id=#{jobId} AND status = 1
+    </select>
+
+    <select id="getApplicationByUserId" resultType="com.qiezi.hermes.api.domain.ApplicationDO">
+        select
+        <include refid="application"/>
+        from application WHERE user_id = #{userId} AND status = 1
+    </select>
+
+
 </mapper>

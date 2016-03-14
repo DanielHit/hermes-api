@@ -23,4 +23,9 @@ public class IApplicationDAOTest extends BaseTest {
         System.out.println("get here !");
         System.out.println(applicationDAO.getApplicationByUserIdAndJobId(10001, 12345));
     }
+
+    @Test
+    public void testGetApplicationByUserId() throws Exception {
+        System.out.println(applicationDAO.getApplicationByUserId(100012));
+    }
 }

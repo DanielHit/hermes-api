@@ -1,0 +1,4 @@
+#!/bin/sh
+mvn clean package -Dmaven.test.skip=true
+fuser -k -n tcp 8080
+nohup java -jar  -Dspring.profiles.active=online target/hermes-api-release-1.0-SNAPSHOT.jar

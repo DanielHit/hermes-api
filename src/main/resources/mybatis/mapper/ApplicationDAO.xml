@@ -31,5 +31,10 @@
         from application WHERE user_id = #{userId} AND status = 1
     </select>
 
+    <select id="getApplicatioNumByJobId" resultType="java.lang.Integer">
+        select
+        count(*)
+        from application WHERE job_id = #{jobId} AND status = 1
+    </select>
 
 </mapper>

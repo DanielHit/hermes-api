@@ -2,13 +2,16 @@ package com.qiezi.hermes.api.controller;
 
 import com.google.common.collect.ImmutableMap;
 import com.qiezi.hermes.api.dao.IJobDescDAO;
+import com.qiezi.hermes.api.model.PostJobModel;
 import com.qiezi.hermes.api.param.PostNewJobRequestParam;
+import com.qiezi.hermes.api.service.IPositionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,6 +23,8 @@ public class RecruiterController {
     public static final Logger logger = LoggerFactory.getLogger(RecruiterController.class);
     @Autowired
     private IJobDescDAO jobDescDAO;
+    @Autowired
+    private IPositionService positionService;
 
     @RequestMapping(value = "/postJob", method = RequestMethod.POST)
     public Map<String, Object> postNewJob(@RequestParam(required = true) int cityId, @RequestParam(required = true) int areaId,
@@ -47,9 +52,15 @@ public class RecruiterController {
     }
 
     // 查看已经发布的职位
-    @RequestMapping(value = "/getJob", method = RequestMethod.GET)
-    public Map<String, Object> getAllJob(@RequestParam(required = true, defaultValue = "10") int ci, @ModelAttribute("appVersion") float appVersion, HttpServletRequest request) {
-        return ImmutableMap.<String, Object>builder().put("data", "fuck").build();
+    @RequestMapping(value = "/getPostJobList", method = RequestMethod.GET)
+    public Map<String, Object> getAllPostJob(@RequestParam(required = true) int userId) {
+        try {
+            List<PostJobModel> postJobModelList = positionService.getPostJobList(userId);
+            return ImmutableMap.<String, Object>builder().put("data", postJobModelList).put("status", 200).build();
+        } catch (Exception e) {
+            logger.info("getAllJob {}", e);
+        }
+        return ImmutableMap.<String, Object>builder().put("status", "500").build();
     }
 
     // 更改已经发布的职位

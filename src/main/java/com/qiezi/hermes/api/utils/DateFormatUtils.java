@@ -25,9 +25,6 @@ public class DateFormatUtils {
     public static long getIntervalDays(String endDate) throws ParseException {
         java.util.Date temp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                 .parse(endDate);
-
-        System.out.println((new Date()).getTime());
-        System.out.println(temp.getTime());
         long day = ((new Date()).getTime() - temp.getTime()) / (24 * 60 * 60 * 1000);
         return day;
     }

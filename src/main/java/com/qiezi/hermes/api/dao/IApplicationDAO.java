@@ -22,4 +22,6 @@ public interface IApplicationDAO {
     public ApplicationDO getApplicationByUserIdAndJobId(@Param("userId") int userId, @Param("jobId") int jobId);
 
     List<ApplicationDO> getApplicationByUserId(int userId);
+
+    public int getApplicatioNumByJobId(@Param("jobId") int jobId);
 }

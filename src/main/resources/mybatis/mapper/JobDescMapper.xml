@@ -46,4 +46,11 @@
         #{salary}, #{jobImg}, #{address},#{longitude},#{latitude},now(), #{userId}, #{jobContent}, #{companyDesc},1,1);
     </insert>
 
+    <select id="getJobListByPostUserId" resultType="com.qiezi.hermes.api.domain.JobDescDO">
+        SELECT
+        <include refid="job_desc"/>
+        FROM job_desc
+        WHERE post_user_id = #{postUserId} AND status = 1
+    </select>
+
 </mapper>

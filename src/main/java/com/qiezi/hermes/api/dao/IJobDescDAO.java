@@ -20,9 +20,10 @@ public interface IJobDescDAO {
     public int countJob();
 
     public int addNewJobDesc(@Param("cityId") int cityId, @Param("areaId") int areaId, @Param("cateId") int cateId, @Param("jobName") String jobName,
-                             @Param("jobType") int jobType,@Param("salary") int salary, @Param("welfare") String welfare, @Param("experience") int experience, @Param("degree") int degree,
+                             @Param("jobType") int jobType, @Param("salary") int salary, @Param("welfare") String welfare, @Param("experience") int experience, @Param("degree") int degree,
                              @Param("jobImg") String jobImg, @Param("address") String address,
                              @Param("longitude") double longitude, @Param("latitude") double latitude, @Param("userId") int userId,
                              @Param("jobContent") String jobContent, @Param("companyDesc") String company_desc);
 
+    public List<JobDescDO> getJobListByPostUserId(@Param("postUserId") int postUserId);
 }

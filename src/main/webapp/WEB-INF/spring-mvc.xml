@@ -23,7 +23,8 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/api/**"/>
-            <bean class="com.meituan.mtrace.http.TraceHandlerInterceptor"/>
+            <!--拦截器-->
+            <bean class="com.qiezi.mtrace.http.TraceHandlerInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 

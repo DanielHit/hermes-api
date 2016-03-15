@@ -3,6 +3,7 @@ package com.qiezi.hermes.api.controller;
 import com.google.common.collect.ImmutableMap;
 import com.qiezi.hermes.api.dao.IJobDescDAO;
 import com.qiezi.hermes.api.model.PostJobModel;
+import com.qiezi.hermes.api.model.PostResumeModel;
 import com.qiezi.hermes.api.param.PostNewJobRequestParam;
 import com.qiezi.hermes.api.service.IPositionService;
 import org.slf4j.Logger;
@@ -63,11 +64,21 @@ public class RecruiterController {
         return ImmutableMap.<String, Object>builder().put("status", "500").build();
     }
 
-    // 更改已经发布的职位
+    // todo 更改已经发布的岗位信息
     @RequestMapping(value = "/editJob", method = RequestMethod.POST)
     public Map<String, Object> editJob(@RequestParam(required = true, defaultValue = "10") int ci, @ModelAttribute("appVersion") float appVersion, HttpServletRequest request) {
         return ImmutableMap.<String, Object>builder().put("data", "fuck").build();
     }
 
+    @RequestMapping(value = "/getPostResume", method = RequestMethod.GET)
+    public Map<String, Object> getPostResume(@RequestParam(required = true) int userId, @RequestParam(required = false, defaultValue = "0") int jobId) {
+        try {
+            List<PostResumeModel> postResumeModelList = positionService.getPostResumeList(userId, jobId);
+            return ImmutableMap.<String, Object>builder().put("data", postResumeModelList).put("status", 200).build();
+        } catch (Exception e) {
+            logger.info("getAllJob {}", e);
+        }
+        return ImmutableMap.<String, Object>builder().put("status", "500").build();
+    }
 
 }

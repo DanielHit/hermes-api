@@ -1,7 +1,5 @@
 package com.qiezi.hermes.api.domain;
 
-import java.util.Date;
-
 /**
  * Created by Daniel on 3/8/16.
  */
@@ -9,6 +7,7 @@ public class ApplicationDO {
     private int id;
     private int jobId;
     private int userId;
+    private int postUserId;
     private String date;
     private int stage;
     private int status;
@@ -35,6 +34,14 @@ public class ApplicationDO {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public int getPostUserId() {
+        return postUserId;
+    }
+
+    public void setPostUserId(int postUserId) {
+        this.postUserId = postUserId;
     }
 
     public String getDate() {
@@ -67,6 +74,7 @@ public class ApplicationDO {
         sb.append("id=").append(id);
         sb.append(", jobId=").append(jobId);
         sb.append(", userId=").append(userId);
+        sb.append(", postUserId=").append(postUserId);
         sb.append(", date='").append(date).append('\'');
         sb.append(", stage=").append(stage);
         sb.append(", status=").append(status);

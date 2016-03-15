@@ -33,6 +33,10 @@ public class IApplicationDAOTest extends BaseTest {
     public void testGetApplicationNumByJobId() throws Exception {
         System.out.println("************ result");
         System.out.println(applicationDAO.getApplicatioNumByJobId(17699));
+    }
 
+    @Test
+    public void testGetAppByPostUserId() throws Exception {
+        System.out.println(applicationDAO.getApplicationListByPostUserId(12345));
     }
 }

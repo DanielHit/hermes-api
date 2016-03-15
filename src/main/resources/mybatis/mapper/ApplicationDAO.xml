@@ -3,7 +3,7 @@
 <mapper namespace="com.qiezi.hermes.api.dao.IApplicationDAO">
 
     <sql id="application">
-        id, job_id,user_id,date, stage,status
+        id, job_id, user_id, post_user_id, date, stage,status
     </sql>
 
     <select id="getByUserId" resultType="com.qiezi.hermes.api.domain.ApplicationDO">
@@ -35,6 +35,18 @@
         select
         count(*)
         from application WHERE job_id = #{jobId} AND status = 1
+    </select>
+
+    <select id="getApplicationListByJobId" resultType="com.qiezi.hermes.api.domain.ApplicationDO">
+        select
+        <include refid="application"/>
+        from application WHERE job_id = #{jobId} AND status = 1
+    </select>
+
+    <select id="getApplicationListByPostUserId" resultType="com.qiezi.hermes.api.domain.ApplicationDO">
+        select
+        <include refid="application"/>
+        from application WHERE post_user_id = #{postUserId} AND status = 1
     </select>
 
 </mapper>

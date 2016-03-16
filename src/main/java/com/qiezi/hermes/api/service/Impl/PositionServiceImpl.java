@@ -30,8 +30,9 @@ public class PositionServiceImpl implements IPositionService {
     private IUserDAO userDAO;
 
     @Override
-    public List<PostJobModel> getPostJobList(int postUserId) {
-        List<JobDescDO> jobDescDOs = jobDescDAO.getJobListByPostUserId(postUserId);
+    public List<PostJobModel> getPostJobList(int postUserId, int stage) {
+        List<JobDescDO> jobDescDOs = jobDescDAO.getJobListByPostUserId(postUserId,stage);
+
         if (CollectionUtils.isEmpty(jobDescDOs)) {
             return Collections.EMPTY_LIST;
         }

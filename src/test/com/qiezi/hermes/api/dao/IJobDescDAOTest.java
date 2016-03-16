@@ -29,6 +29,7 @@ public class IJobDescDAOTest extends BaseNonTransactionTest {
 
     @Test
     public void testGetJDByPostUserID() throws Exception {
-        System.out.println(jobDescDAO.getJobListByPostUserId(1111));
+        System.out.println("*****************************************");
+        System.out.println(jobDescDAO.getJobListByPostUserId(12345, 1));
     }
 }

@@ -54,9 +54,9 @@ public class RecruiterController {
 
     // 查看已经发布的职位
     @RequestMapping(value = "/getPostJobList", method = RequestMethod.GET)
-    public Map<String, Object> getAllPostJob(@RequestParam(required = true) int userId) {
+    public Map<String, Object> getAllPostJob(@RequestParam(required = true) int userId, @RequestParam(required = false,defaultValue = "1") int stage) {
         try {
-            List<PostJobModel> postJobModelList = positionService.getPostJobList(userId);
+            List<PostJobModel> postJobModelList = positionService.getPostJobList(userId,stage);
             return ImmutableMap.<String, Object>builder().put("data", postJobModelList).put("status", 200).build();
         } catch (Exception e) {
             logger.info("getAllJob {}", e);

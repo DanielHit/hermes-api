@@ -346,26 +346,6 @@
                 </configuration>
             </plugin>
 
-            <!--<plugin>-->
-            <!--<groupId>com.meituan.service.mobile</groupId>-->
-            <!--<artifactId>autoconfig-maven-plugin</artifactId>-->
-            <!--<version>0.0.4</version>-->
-            <!--<executions>-->
-            <!--<execution>-->
-            <!--<phase>validate</phase>-->
-            <!--<goals>-->
-            <!--<goal>generate</goal>-->
-            <!--</goals>-->
-            <!--</execution>-->
-            <!--</executions>-->
-            <!--<configuration>-->
-            <!--<envBase>src/main/resources/META-INF/environments</envBase>-->
-            <!--<templateBase>src/main/resources/META-INF/templates</templateBase>-->
-            <!--<targetBase>src/main/resources</targetBase>-->
-            <!--<config>src/main/resources/META-INF/autoconfig.xml</config>-->
-            <!--</configuration>-->
-            <!--</plugin>-->
-
         </plugins>
     </build>
 

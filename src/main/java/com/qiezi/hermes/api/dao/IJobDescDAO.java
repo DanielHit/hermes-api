@@ -11,6 +11,7 @@ import java.util.List;
  */
 @Repository
 public interface IJobDescDAO {
+    
     public List<JobDescDO> getJobDescListBySelectParam(@Param("cityId") int cityId, @Param("areaId") int areaId, @Param("cateId") int cateId, @Param("experience") int experience, @Param("degree") int degree, @Param("salary") int salray, @Param("postTime") String postTime);
 
     public JobDescDO getJobDescByJobId(@Param("jobId") int jobId);
@@ -25,5 +26,5 @@ public interface IJobDescDAO {
                              @Param("longitude") double longitude, @Param("latitude") double latitude, @Param("userId") int userId,
                              @Param("jobContent") String jobContent, @Param("companyDesc") String company_desc);
 
-    public List<JobDescDO> getJobListByPostUserId(@Param("postUserId") int postUserId);
+    public List<JobDescDO> getJobListByPostUserId(@Param("postUserId") int postUserId, @Param("stage") int stage);
 }

@@ -50,7 +50,7 @@
         SELECT
         <include refid="job_desc"/>
         FROM job_desc
-        WHERE post_user_id = #{postUserId} AND status = 1
+        WHERE post_user_id = #{postUserId} AND service_status=#{stage}  AND status = 1
     </select>
 
 </mapper>

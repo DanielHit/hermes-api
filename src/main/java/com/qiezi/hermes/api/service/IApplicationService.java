@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface IApplicationService {
     public List<ApplicationModel> getApplicationByUserId(int userId);
+
+    public int handleApplication(int applicationId, int stage);
 }

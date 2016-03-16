@@ -71,14 +71,28 @@ public class RecruiterController {
     }
 
     @RequestMapping(value = "/getPostResume", method = RequestMethod.GET)
-    public Map<String, Object> getPostResume(@RequestParam(required = true) int userId, @RequestParam(required = false, defaultValue = "0") int jobId) {
+    public Map<String, Object> getPostResume(@RequestParam(required = true) int userId, @RequestParam(required = false, defaultValue = "0") int jobId, @RequestParam(required = false, defaultValue = "0") int stage) {
         try {
-            List<PostResumeModel> postResumeModelList = positionService.getPostResumeList(userId, jobId);
+            List<PostResumeModel> postResumeModelList = positionService.getPostResumeList(userId, jobId,stage);
             return ImmutableMap.<String, Object>builder().put("data", postResumeModelList).put("status", 200).build();
         } catch (Exception e) {
             logger.info("getAllJob {}", e);
         }
         return ImmutableMap.<String, Object>builder().put("status", "500").build();
     }
+
+    // 处理简历
+    @RequestMapping(value = "/handleResume", method = RequestMethod.POST)
+    public Map<String, Object> operateResume(@RequestParam(required = true) int applicationId, @RequestParam(required = false, defaultValue = "0") int stage) {
+        try {
+            // todo 处理简历申请的情况
+
+
+        } catch (Exception e) {
+            logger.info("getAllJob {}", e);
+        }
+        return ImmutableMap.<String, Object>builder().put("status", "500").build();
+    }
+
 
 }

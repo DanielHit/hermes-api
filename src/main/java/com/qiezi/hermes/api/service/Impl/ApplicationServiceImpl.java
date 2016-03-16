@@ -51,4 +51,9 @@ public class ApplicationServiceImpl implements IApplicationService {
 
         return applicationModelList;
     }
+
+    @Override
+    public int handleApplication(int applicationId, int stage) {
+        return applicationDAO.setApplicationState(applicationId, stage);
+    }
 }

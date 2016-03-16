@@ -37,6 +37,11 @@ public class IApplicationDAOTest extends BaseTest {
 
     @Test
     public void testGetAppByPostUserId() throws Exception {
-        System.out.println(applicationDAO.getApplicationListByPostUserId(12345));
+        System.out.println(applicationDAO.getApplicationListByPostUserId(12345, 1));
+    }
+
+    @Test
+    public void testSetApplicationId() throws Exception {
+        System.out.println(applicationDAO.setApplicationState(10031, 1));
     }
 }

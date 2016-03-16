@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface IPositionService {
     public List<PostJobModel> getPostJobList(int id, int userId);
-    public List<PostResumeModel> getPostResumeList(int userId, int jobId);
+    public List<PostResumeModel> getPostResumeList(int userId, int jobId, int stage);
 }

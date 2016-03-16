@@ -51,15 +51,15 @@ public class PositionServiceImpl implements IPositionService {
     }
 
     @Override
-    public List<PostResumeModel> getPostResumeList(int postUserId, int jobId) {
+    public List<PostResumeModel> getPostResumeList(int postUserId, int jobId, int stage) {
         List<ApplicationDO> applicationDOs;
         if (jobId == 0) {
-            applicationDOs = applicationDAO.getApplicationListByPostUserId(postUserId);
+            applicationDOs = applicationDAO.getApplicationListByPostUserId(postUserId,stage);
             if (CollectionUtils.isEmpty(applicationDOs)) {
                 return Collections.EMPTY_LIST;
             }
         } else {
-            applicationDOs = applicationDAO.getApplicationListByJobId(jobId);
+            applicationDOs = applicationDAO.getApplicationListByJobId(jobId,stage);
             if (CollectionUtils.isEmpty(applicationDOs)) {
                 return Collections.EMPTY_LIST;
             }

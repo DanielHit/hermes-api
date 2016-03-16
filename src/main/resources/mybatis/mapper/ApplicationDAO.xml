@@ -40,13 +40,20 @@
     <select id="getApplicationListByJobId" resultType="com.qiezi.hermes.api.domain.ApplicationDO">
         select
         <include refid="application"/>
-        from application WHERE job_id = #{jobId} AND status = 1
+        from application WHERE job_id = #{jobId} AND stage = #{stage} AND status = 1
     </select>
 
     <select id="getApplicationListByPostUserId" resultType="com.qiezi.hermes.api.domain.ApplicationDO">
         select
         <include refid="application"/>
-        from application WHERE post_user_id = #{postUserId} AND status = 1
+        from application WHERE post_user_id = #{postUserId} AND stage = #{stage} AND status = 1
     </select>
+
+    <update id="setApplicationState">
+        UPDATE application
+        SET
+        stage = #{stage}
+        WHERE id = #{applicationId} AND status = 1
+    </update>
 
 </mapper>

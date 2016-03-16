@@ -7,13 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 
-/**
- * Description:
- *
- * @author liuzhengyang
- * @version 1.0
- * @since 2016-03-08
- */
 @Repository
 public interface IApplicationDAO {
 
@@ -27,7 +20,7 @@ public interface IApplicationDAO {
 
     List<ApplicationDO> getApplicationListByJobId(int jobId, int stage);
 
-    List<ApplicationDO> getApplicationListByPostUserId(@Param("postUserId") int postUserId, int stage);
+    List<ApplicationDO> getApplicationListByPostUserId(@Param("postUserId") int postUserId, @Param("stage") int stage);
 
     int setApplicationState(@Param("applicationId") int applicationId, @Param("stage") int stage);
 }

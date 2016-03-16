@@ -5,6 +5,7 @@ import com.qiezi.hermes.api.dao.IJobDescDAO;
 import com.qiezi.hermes.api.model.PostJobModel;
 import com.qiezi.hermes.api.model.PostResumeModel;
 import com.qiezi.hermes.api.param.PostNewJobRequestParam;
+import com.qiezi.hermes.api.service.IApplicationService;
 import com.qiezi.hermes.api.service.IPositionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,8 @@ public class RecruiterController {
     private IJobDescDAO jobDescDAO;
     @Autowired
     private IPositionService positionService;
+    @Autowired
+    private IApplicationService applicationService;
 
     @RequestMapping(value = "/postJob", method = RequestMethod.POST)
     public Map<String, Object> postNewJob(@RequestParam(required = true) int cityId, @RequestParam(required = true) int areaId,
@@ -54,9 +57,9 @@ public class RecruiterController {
 
     // 查看已经发布的职位
     @RequestMapping(value = "/getPostJobList", method = RequestMethod.GET)
-    public Map<String, Object> getAllPostJob(@RequestParam(required = true) int userId, @RequestParam(required = false,defaultValue = "1") int stage) {
+    public Map<String, Object> getAllPostJob(@RequestParam(required = true) int userId, @RequestParam(required = false, defaultValue = "1") int stage) {
         try {
-            List<PostJobModel> postJobModelList = positionService.getPostJobList(userId,stage);
+            List<PostJobModel> postJobModelList = positionService.getPostJobList(userId, stage);
             return ImmutableMap.<String, Object>builder().put("data", postJobModelList).put("status", 200).build();
         } catch (Exception e) {
             logger.info("getAllJob {}", e);
@@ -73,7 +76,7 @@ public class RecruiterController {
     @RequestMapping(value = "/getPostResume", method = RequestMethod.GET)
     public Map<String, Object> getPostResume(@RequestParam(required = true) int userId, @RequestParam(required = false, defaultValue = "0") int jobId, @RequestParam(required = false, defaultValue = "0") int stage) {
         try {
-            List<PostResumeModel> postResumeModelList = positionService.getPostResumeList(userId, jobId,stage);
+            List<PostResumeModel> postResumeModelList = positionService.getPostResumeList(userId, jobId, stage);
             return ImmutableMap.<String, Object>builder().put("data", postResumeModelList).put("status", 200).build();
         } catch (Exception e) {
             logger.info("getAllJob {}", e);
@@ -85,9 +88,9 @@ public class RecruiterController {
     @RequestMapping(value = "/handleResume", method = RequestMethod.POST)
     public Map<String, Object> operateResume(@RequestParam(required = true) int applicationId, @RequestParam(required = false, defaultValue = "0") int stage) {
         try {
-            // todo 处理简历申请的情况
-
-
+            if (applicationService.handleApplication(applicationId, stage) == 1) {
+                return ImmutableMap.<String, Object>builder().put("status", "200").build();
+            }
         } catch (Exception e) {
             logger.info("getAllJob {}", e);
         }

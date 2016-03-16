@@ -68,6 +68,7 @@ public class PositionServiceImpl implements IPositionService {
         List<PostResumeModel> postResumeModelList = new ArrayList<>();
         for (ApplicationDO applicationDO : applicationDOs) {
             PostResumeModel postResumeModel = new PostResumeModel();
+            postResumeModel.setApplicationId(applicationDO.getId());
             postResumeModel.setDate(applicationDO.getDate());
             postResumeModel.setJobId(applicationDO.getJobId());
             postResumeModel.setUserId(applicationDO.getUserId());

@@ -9,6 +9,7 @@ public class PostResumeModel implements Serializable {
 
     private static final long serialVersionUID = -1078350938291708843L;
 
+    private int applicationId;
     private int resumeId;
     private String date;
     private int userId;
@@ -17,6 +18,13 @@ public class PostResumeModel implements Serializable {
     private int jobId;          // 投递的岗位ID
     private String jobName;
 
+    public int getApplicationId() {
+        return applicationId;
+    }
+
+    public void setApplicationId(int applicationId) {
+        this.applicationId = applicationId;
+    }
 
     public int getResumeId() {
         return resumeId;
@@ -77,7 +85,8 @@ public class PostResumeModel implements Serializable {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("PostResumeModel{");
-        sb.append("resumeId=").append(resumeId);
+        sb.append("applicationId=").append(applicationId);
+        sb.append(", resumeId=").append(resumeId);
         sb.append(", date='").append(date).append('\'');
         sb.append(", userId=").append(userId);
         sb.append(", candidateName='").append(candidateName).append('\'');

@@ -50,7 +50,14 @@
         SELECT
         <include refid="job_desc"/>
         FROM job_desc
-        WHERE post_user_id = #{postUserId} AND service_status=#{stage}  AND status = 1
+        WHERE post_user_id = #{postUserId} AND service_status=#{stage} AND status = 1
     </select>
+
+    <update id="setJobServiceStatus">
+        UPDATE job_desc
+        SET service_status = #{stage}
+        WHERE
+        id=#{jobId} AND status = 1
+    </update>
 
 </mapper>

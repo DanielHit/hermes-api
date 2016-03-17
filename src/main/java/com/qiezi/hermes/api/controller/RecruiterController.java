@@ -67,7 +67,6 @@ public class RecruiterController {
         return ImmutableMap.<String, Object>builder().put("status", "500").build();
     }
 
-    // todo 更改已经发布的岗位信息
     @RequestMapping(value = "/editJob", method = RequestMethod.POST)
     public Map<String, Object> editJob(@RequestParam(required = true, defaultValue = "10") int ci, @ModelAttribute("appVersion") float appVersion, HttpServletRequest request) {
         return ImmutableMap.<String, Object>builder().put("data", "fuck").build();
@@ -83,6 +82,19 @@ public class RecruiterController {
         }
         return ImmutableMap.<String, Object>builder().put("status", "500").build();
     }
+
+    @RequestMapping(value = "/handlePostJob", method = RequestMethod.POST)
+    public Map<String, Object> handlePostJob(@RequestParam(required = true, defaultValue = "0") int jobId, @RequestParam(required = false, defaultValue = "0") int stage) {
+        try {
+            if (jobDescDAO.setJobServiceStatus(jobId, stage) == 1) {
+                return ImmutableMap.<String, Object>builder().put("status", "200").build();
+            }
+        } catch (Exception e) {
+            logger.info("getAllJob {}", e);
+        }
+        return ImmutableMap.<String, Object>builder().put("status", "500").build();
+    }
+
 
     // 处理简历
     @RequestMapping(value = "/handleResume", method = RequestMethod.POST)

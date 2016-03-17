@@ -32,4 +32,9 @@ public class IJobDescDAOTest extends BaseNonTransactionTest {
         System.out.println("*****************************************");
         System.out.println(jobDescDAO.getJobListByPostUserId(12345, 1));
     }
+
+    @Test
+    public void testSetJobStatus() throws Exception {
+        System.out.println(jobDescDAO.setJobServiceStatus(10002,0));
+    }
 }
